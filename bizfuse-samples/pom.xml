@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.leadingsoft.bizfuse</groupId>
+		<artifactId>bizfuse-parent</artifactId>
+		<version>3.0-SNAPSHOT</version>
+		<relativePath>../</relativePath>
+	</parent>
+	<artifactId>bizfuse-samples</artifactId>
+	<packaging>jar</packaging>
+	<name>Bizfuse Samples</name>
+	<description>Bizfuse Samples</description>
+
+    <properties>
+        <!-- These remain empty unless the corresponding profile is active -->
+        <profile.no-liquibase></profile.no-liquibase>
+        <profile.swagger></profile.swagger>
+    	<start-class>sample.web.common.BizfuseWebApplication</start-class>
+    </properties>
+
+	<dependencies>
+		<!-- bizfuse-web-common dependencies -->
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-web-common</artifactId>
+		</dependency>
+		<!-- bizfuse-webauth-common dependencies -->
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-webauth-common</artifactId>
+		</dependency>
+		<!-- bizfuse-model-common dependencies -->
+		<dependency>
+			<groupId>com.leadingsoft.bizfuse</groupId>
+			<artifactId>bizfuse-model-common</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <!-- bizfuse-base-authority dependencies -->
+        <dependency>
+        	<groupId>com.leadingsoft.bizfuse</groupId>
+        	<artifactId>bizfuse-base-authority</artifactId>
+        </dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<packagingExcludes>WEB-INF/lib/tomcat-*.jar</packagingExcludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+    <profiles>
+        <profile>
+            <id>no-liquibase</id>
+            <properties>
+                <profile.no-liquibase>,no-liquibase</profile.no-liquibase>
+            </properties>
+        </profile>
+        <profile>
+            <id>swagger</id>
+            <properties>
+                <profile.swagger>,swagger</profile.swagger>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- log configuration -->
+                <logback.loglevel>DEBUG</logback.loglevel>
+                <!-- default Spring profiles -->
+                <spring.profiles.active>dev${profile.no-liquibase}</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <!-- log configuration -->
+                <logback.loglevel>INFO</logback.loglevel>
+                <!-- default Spring profiles -->
+                <spring.profiles.active>prod${profile.swagger}${profile.no-liquibase}</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>	
+	
+</project>

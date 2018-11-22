@@ -1,0 +1,81 @@
+server: 
+    port: 8080
+    contextPath: 
+
+spring: 
+    application:
+        name: BizfuseWebAuthority
+    jackson:
+        serialization.write_dates_as_timestamps: true
+    datasource:
+        driver-class-name: org.h2.Driver
+        url: jdbc:h2:mem:demo_db;MVCC=TRUE;LOCK_TIMEOUT=10000
+        username: sa
+        password: 
+        test-while-idle: true
+        max-wait-millis: 30000
+        validation-query: 'SELECT 1'
+        time-between-eviction-runs-millis: 20000
+        min-evictable-idle-time-millis: 28700
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        show-sql: true
+        hibernate:
+          ddl-auto: create-drop
+    h2: 
+        console: 
+            enabled: true
+            path: /h2-console
+        
+eureka:
+    instance:
+        appname: BizfuseWebAuthority
+        instanceId: BizfuseWebAuthority:${spring.application.instance_id:${random.value}}
+
+bizfuse: 
+    web: 
+        async:
+            corePoolSize: 2
+            maxPoolSize: 50
+            queueCapacity: 10000
+        #cors: #By default CORS are not enabled. Uncomment to enable.
+            #allowed-origins: "*"
+            #allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+            #allowed-headers: "*"
+            #exposed-headers:
+            #allow-credentials: true
+            #max-age: 1800
+        swagger:
+            title: BizfuseWebTokenAuth API
+            description: BizfuseWebSample API documentation
+            version: 0.0.1
+            termsOfServiceUrl:
+            contactName:
+            contactUrl:
+            contactEmail:
+            license:
+            licenseUrl: 
+            pathPatterns: /w/.*,/api/.*
+        metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+            jmx.enabled: true
+            spark:
+                enabled: false
+                host: localhost
+                port: 9999
+            graphite:
+                enabled: false
+                host: localhost
+                port: 2003
+                prefix: microapp
+            logs: # Reports Dropwizard metrics in the logs
+                enabled: false
+                reportFrequency: 60 # in seconds
+        logging:
+            logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+                enabled: false
+                host: localhost
+                port: 5000
+                queueSize: 512
+            spectator-metrics: # Reports Spectator Circuit Breaker metrics in the logs
+                enabled: false

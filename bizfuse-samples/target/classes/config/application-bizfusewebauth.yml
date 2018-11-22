@@ -1,0 +1,61 @@
+server: 
+    port: 8080
+    contextPath: 
+
+spring: 
+    application:
+        name: BizfuseWebTokenAuth
+    jackson:
+        serialization.write_dates_as_timestamps: true
+        
+eureka:
+    instance:
+        appname: BizfuseWebTokenAuth
+        instanceId: BizfuseWebTokenAuth:${spring.application.instance_id:${random.value}}
+
+bizfuse: 
+    web: 
+        async:
+            corePoolSize: 2
+            maxPoolSize: 50
+            queueCapacity: 10000
+        #cors: #By default CORS are not enabled. Uncomment to enable.
+            #allowed-origins: "*"
+            #allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+            #allowed-headers: "*"
+            #exposed-headers:
+            #allow-credentials: true
+            #max-age: 1800
+        swagger:
+            title: BizfuseWebTokenAuth API
+            description: BizfuseWebSample API documentation
+            version: 0.0.1
+            termsOfServiceUrl:
+            contactName:
+            contactUrl:
+            contactEmail:
+            license:
+            licenseUrl: 
+            pathPatterns: 
+        metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+            jmx.enabled: true
+            spark:
+                enabled: false
+                host: localhost
+                port: 9999
+            graphite:
+                enabled: false
+                host: localhost
+                port: 2003
+                prefix: microapp
+            logs: # Reports Dropwizard metrics in the logs
+                enabled: false
+                reportFrequency: 60 # in seconds
+        logging:
+            logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+                enabled: false
+                host: localhost
+                port: 5000
+                queueSize: 512
+            spectator-metrics: # Reports Spectator Circuit Breaker metrics in the logs
+                enabled: false

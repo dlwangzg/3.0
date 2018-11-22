@@ -1,0 +1,10 @@
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/FlumeRpcClientProperties.java
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/BufferedRandomAccessFile.java
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/IQueue.java
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/FlumeMultiplexClient.java
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/FlumeRpcClient.java
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/FlumeSingleClient.java
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/MessageCallback.java
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/BlockingThreadPoolExecutor.java
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/FlumeAvroRpcServer.java
+/home/liuyg/develop/svn/bizfuse/3.0/bizfuse-flume/src/main/java/com/leadingsoft/bizfuse/flume/FileStoreQueue.java
